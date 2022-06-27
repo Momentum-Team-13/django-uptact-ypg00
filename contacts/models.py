@@ -20,3 +20,6 @@ class Contact(models.Model):
     state = USStateField(null=True, blank=True)
     zip_code = USZipCodeField(null=True, blank=True)
     birth_date = models.DateField(null=True, blank=True)
+
+class Note(models.Model):
+    note = models.TextField
