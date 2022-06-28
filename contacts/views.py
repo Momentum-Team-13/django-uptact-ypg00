@@ -60,9 +60,9 @@ def note(request, pk):
         form = NoteForm(data=request.POST, instance=note)
         if form.is_valid():
             form.save()
-            return redirect(to='list_contacts####')
+            return redirect(to='notes')
 
-    return render(request, "contacts/edit_contact.html####", {
+    return render(request, "contacts/notes.html", {
         "form": form,
         "note": note
     })
