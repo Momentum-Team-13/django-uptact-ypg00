@@ -49,21 +49,23 @@ def delete_contact(request, pk):
 
 def view_contact(request, pk):
     contact = get_object_or_404(Contact, pk=pk)
+    notes = Note.objects.filter(contact = pk)
     return render(request, "contacts/view_contact.html",
-                  {"contact": contact})
+                  {"contact": contact, "note": notes})
 
 def add_note(request, pk):
     contact = get_object_or_404(Contact, pk=pk)
     if request.method == 'GET':
-        new_note = NoteForm()
+        form = NoteForm()
     else:
-        new_note = NoteForm(data=request.POST)
-        if new_note.is_valid():
+        form = NoteForm(data=request.POST)
+        if form.is_valid():
+            new_note = form.save()
             new_note.contact = contact
             new_note.save()
-            return redirect(to='list_contacts')
+            return redirect(to='list_contacts', pk=pk)
 
     return render(request, "contacts/notes.html", {
         "contact": contact,
         "form": form
-    })
+    })  
