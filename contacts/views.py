@@ -52,17 +52,17 @@ def view_contact(request, pk):
     return render(request, "contacts/view_contact.html",
                   {"contact": contact})
 
-def note(request, pk):
-    note = get_object_or_404(Note, pk=pk)
+def add_note(request, pk):
+    contact = get_object_or_404(Contact, pk=pk)
     if request.method == 'GET':
-        form = NoteForm(instance=note)
+        new_note = NoteForm()
     else:
-        form = NoteForm(data=request.POST, instance=note)
-        if form.is_valid():
-            form.save()
-            return redirect(to='notes')
+        new_note = NoteForm(data=request.POST)
+        if new_note.is_valid():
+            new_note.contact = contact
+            new_note.save()
+            return redirect(to='list_contacts')
 
     return render(request, "contacts/notes.html", {
-        "form": form,
-        "note": note
+        "contact": contact
     })
