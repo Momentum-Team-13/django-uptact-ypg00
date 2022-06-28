@@ -2,6 +2,9 @@ from django.db import models
 from django.core.validators import RegexValidator
 from localflavor.us.models import USStateField, USZipCodeField
 
+class Note(models.Model):
+    note = models.TextField(null=True, blank=True)
+    date_time_field = models.DateTimeField(null=True, blank=True, auto_now_add=True)
 
 class Contact(models.Model):
     phone_regex = RegexValidator(
@@ -20,6 +23,4 @@ class Contact(models.Model):
     state = USStateField(null=True, blank=True)
     zip_code = USZipCodeField(null=True, blank=True)
     birth_date = models.DateField(null=True, blank=True)
-
-class Note(models.Model):
-    note = models.TextField
+    note = models.ForeignKey(Note, null=True, blank=True, on_delete = models.CASCADE)
