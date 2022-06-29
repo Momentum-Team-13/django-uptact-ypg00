@@ -44,14 +44,12 @@ def delete_contact(request, pk):
         contact.delete()
         return redirect(to='list_contacts')
 
-    return render(request, "contacts/delete_contact.html",
-                  {"contact": contact})
+    return render(request, "contacts/delete_contact.html", {"contact": contact})
 
 def contact_detail(request, pk):
     contact = get_object_or_404(Contact, pk=pk)
     notes = Note.objects.filter(contact = pk)
-    return render(request, "contacts/contact_detail.html",
-                  {"contact": contact, "note": notes})
+    return render(request, "contacts/contact_detail.html", {"contact": contact, "note": notes})
 
 def add_note(request, pk):
     contact = get_object_or_404(Contact, pk=pk)
@@ -63,9 +61,6 @@ def add_note(request, pk):
             new_note = form.save(commit=False)
             new_note.contact = contact
             new_note.save()
-            return redirect(to='list_contacts', pk=pk)
+            return redirect(to='contact_detail', pk=pk)
 
-    return render(request, "contacts/notes.html", {
-        "contact": contact,
-        "form": form
-    })  
+    return render(request, "contacts/notes.html", {"contact": contact, "form": form})  

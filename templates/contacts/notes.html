@@ -1,16 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <h1>Notes</h1>
 
 <div class="flex flex-wrap">
     <div class="w-33 pa3">
-        <h2>{{ contact.name }}</h2>
+        <h2><a href="{% url 'contact_detail' pk=contact.pk %}">{{ contact.name }}</a></h2>
 
-        <!-- <form action="{% url 'notes' pk=contact.pk %}" method="POST">
+        <form action="{% url 'notes' pk=contact.pk %}" method="POST">
             {% csrf_token %}
-            {{ new_note.as_p }}
-        </form> -->
+            {{ form.as_p }}
+            <div>
+                <button type="submit">Add Note</button>
+            </div>
+        </form>
 
         <p>
             <a href="{% url 'edit_contact' pk=contact.pk %}">Edit Contact</a><br>
