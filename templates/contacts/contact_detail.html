@@ -52,7 +52,9 @@
         <p>
             <a href="{% url 'notes' pk=contact.pk %}">Add Note</a><br>
             <a href="{% url 'edit_contact' pk=contact.pk %}">Edit Contact</a><br>
-            <a class="red" href="{% url 'delete_contact' pk=contact.pk %}">Delete Contact</a>
+            <a class="red" href="{% url 'delete_contact' pk=contact.pk %}">Delete Contact</a><br><br>
+            <a href="{% url 'list_contacts' %}">Home</a><br>
+
         </p>
     </div>
 </div>
