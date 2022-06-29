@@ -26,5 +26,5 @@ class Note(models.Model):
     date = models.DateTimeField(null=True, blank=True, auto_now_add=True)
     contact = models.ForeignKey('Contact', on_delete=models.CASCADE, related_name='notes', null=True, blank=True)
 
-    # def __str__(self, text_field):
-    #     return f'{text_field}'
+    def __str__(self):
+        return f'{self.notes}'

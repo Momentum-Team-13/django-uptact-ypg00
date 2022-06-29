@@ -39,14 +39,15 @@
         {% endif %}
 
         <!-- Loop through Notes -->
-        <!-- {% if contact.notes %} -->
+        {% if contact.notes %}
         <h4>Notes</h4>
-        <div class="flex">
+        <div>
             {% for note in contact.notes.all %}
             <div>{{ note }}</div>
+            <br>
+            {% endfor %}
         </div>
-        {% endfor %}
-        <!-- {% endif %} -->
+        {% endif %}
 
         <p>
             <a href="{% url 'notes' pk=contact.pk %}">Add Note</a><br>
