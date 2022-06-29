@@ -34,21 +34,19 @@
 
         {% if contact.birth_date %}
         <div class="flex">
-            <div class="pr2"></div>
             <div>{{ contact.birth_date }}</div>
         </div>
         {% endif %}
-        <!-- Loop through Notes -->
 
-        {% if contact.notes %}
+        <!-- Loop through Notes -->
+        <!-- {% if contact.notes %} -->
         <h4>Notes</h4>
         <div class="flex">
             {% for note in contact.notes.all %}
-            <div class="pr2"></div>
             <div>{{ note }}</div>
         </div>
         {% endfor %}
-        {% endif %}
+        <!-- {% endif %} -->
 
         <p>
             <a href="{% url 'notes' pk=contact.pk %}">Add Note</a><br>

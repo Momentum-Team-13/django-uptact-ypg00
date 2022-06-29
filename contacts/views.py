@@ -60,7 +60,7 @@ def add_note(request, pk):
     else:
         form = NoteForm(data=request.POST)
         if form.is_valid():
-            new_note = form.save()
+            new_note = form.save(commit=False)
             new_note.contact = contact
             new_note.save()
             return redirect(to='list_contacts', pk=pk)
