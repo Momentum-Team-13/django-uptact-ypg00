@@ -63,4 +63,12 @@ def add_note(request, pk):
             new_note.save()
             return redirect(to='contact_detail', pk=pk)
 
-    return render(request, "contacts/notes.html", {"contact": contact, "form": form})  
+    return render(request, "contacts/notes.html", {"contact": contact, "form": form}) 
+
+def delete_note(request, pk):
+    note = get_object_or_404(Note, pk=pk)
+    if request.method == 'POST':
+        note.delete()
+        return redirect(to='contact_details')
+    
+    # return render(request, "contacts/contact_details.html", {"note": note})

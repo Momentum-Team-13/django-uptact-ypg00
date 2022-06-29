@@ -45,6 +45,13 @@
             {% for note in contact.notes.all %}
             <div>{{ note }}</div>
             <br>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div>
+                    <button type="submit">Delete Note</button><br>
+                </div>
+            </form>
+            <br>
             {% endfor %}
         </div>
         {% endif %}
