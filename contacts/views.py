@@ -47,10 +47,10 @@ def delete_contact(request, pk):
     return render(request, "contacts/delete_contact.html",
                   {"contact": contact})
 
-def view_contact(request, pk):
+def contact_detail(request, pk):
     contact = get_object_or_404(Contact, pk=pk)
     notes = Note.objects.filter(contact = pk)
-    return render(request, "contacts/view_contact.html",
+    return render(request, "contacts/contact_detail.html",
                   {"contact": contact, "note": notes})
 
 def add_note(request, pk):
