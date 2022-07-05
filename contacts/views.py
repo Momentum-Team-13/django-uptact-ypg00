@@ -37,7 +37,6 @@ def edit_contact(request, pk):
         "contact": contact
     })
 
-
 def delete_contact(request, pk):
     contact = get_object_or_404(Contact, pk=pk)
     if request.method == 'POST':
